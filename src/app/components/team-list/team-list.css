@@ -1,216 +1,241 @@
-/* --- 1. משתנים וערכת נושא (צבעים כהים וקריאים) --- */
 :root {
-  --primary: #4F46E5;
-  --primary-hover: #4338ca;
-  --bg-app: #F8FAFC;
-  --bg-card: #FFFFFF;
-  --text-main: #0f172a;    /* כחול-שחור עמוק לכל הטקסטים */
-  --text-muted: #334155;   /* אפור כהה מאוד */
-  --accent-yellow: #fbbf24; /* צהוב לכפתור הוספה */
-  --success-green: #10B981;
-  --danger-red: #EF4444;
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --radius-md: 12px;
-  --radius-lg: 16px;
-}
-
-/* --- 2. איפוס ומבנה כללי --- */
-* {
-  box-sizing: border-box;
+  --primary: #2563eb;
+  --text: #0f1722;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --success: #10b981;
+  --danger: #ef4444;
 }
 
 .page-container {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  color: var(--text-main);
-  direction: rtl; /* יישור לימין לעברית */
+  margin: 0 auto;
+  padding: 24px;
+  direction: rtl;
 }
 
-/* --- 3. כותרת עליונה (מתוקן - בלי מתיחות) --- */
 .teams-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
-  background: none !important;
-  border: none !important;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
 }
 
 .teams-header h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-main);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
   margin: 0;
 }
 
-/* --- 4. כפתור הפלוס העגול (עיגול מושלם) --- */
 .circle-btn {
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important;
-  border: 2px solid #b45309 !important; /* מסגרת חומה כהה */
-  background-color: var(--accent-yellow) !important;
-  color: #0f172a !important; /* טקסט שחור */
-  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  box-shadow: var(--shadow-md);
 }
 
 .circle-btn:hover {
-  background-color: #ffffff !important; /* הופך ללבן בריחוף כפי שביקשת */
-  transform: rotate(90deg) scale(1.1);
-  box-shadow: var(--shadow-lg);
+  background: #1d4ed8;
+  transform: scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* --- 5. תיבת יצירה והוספת חבר --- */
-.create-team-box, .add-member-box {
-  background: var(--bg-card);
-  padding: 1.5rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  border: 1px solid #e2e8f0;
-  margin-bottom: 2rem;
-  animation: slideDown 0.4s ease-out forwards;
+.create-team-box,
+.add-member-box {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: slideDown 0.3s ease-out;
 }
 
 .add-member-box {
-  background: #fff7ed;
-  border: 2px dashed #fb923c;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.add-member-box label {
-  font-weight: 700;
-  color: #7c2d12; /* חום כהה */
+  background: #fef3c7;
+  border-color: #fcd34d;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* --- 6. גריד וכרטיסי צוות --- */
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: 24px;
 }
 
 .team-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid #f1f5f9;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  transition: transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  gap: 16px;
+  transition: all 0.3s;
 }
 
 .team-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .team-card h3 {
   margin: 0;
-  color: var(--text-main);
-  font-size: 1.5rem;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
 }
 
-/* --- 7. רשימת חברים (טקסט כהה וברור) --- */
+.team-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .members-list {
-  background: #f8fafc;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid #e2e8f0;
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 
 .members-list strong {
   color: var(--primary);
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .members-list li {
-  color: var(--text-main);
+  color: var(--text);
   font-weight: 500;
-  padding: 0.4rem 0;
+  padding: 4px 0;
   list-style: none;
 }
 
-/* --- 8. כפתורים, אינפוטים וסלקטים (בלי כתב לבן!) --- */
-input, select {
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+input,
+select {
   width: 100%;
-  padding: 0.8rem;
-  border: 2px solid #e2e8f0;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: var(--text-main) !important;
+  color: var(--text);
   background: white;
-  font-size: 1rem;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 button {
   cursor: pointer;
-  padding: 0.8rem 1.2rem;
+  padding: 10px 16px;
   border-radius: 8px;
   border: none;
-  font-weight: 700;
+  font-weight: 600;
   transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0f172a !important; /* טקסט כהה תמיד */
+  color: var(--text);
 }
 
-/* כפתור "צפה בפרויקטים" */
 .enter-btn {
-  background-color: #e0e7ff !important;
-  border: 1px solid var(--primary) !important;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
   width: 100%;
+  color: var(--primary);
 }
 
 .enter-btn:hover {
-  background-color: var(--primary) !important;
-  color: #ffffff !important; /* כאן מותר לבן כי הרקע נהיה כחול כהה מאוד */
+  background: var(--primary);
+  color: white;
 }
 
-/* כפתורי ביטול */
-.btn-secondary {
-  background-color: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
+.create-team-box button,
+.add-member-box button {
+  background: var(--primary);
+  color: white;
+  width: 100%;
 }
 
-/* כפתורי אישור (כחול בהיר עם טקסט כהה) */
-.btn-primary, .create-team-box button {
-  background-color: #818cf8 !important;
+.create-team-box button:hover:not(:disabled),
+.add-member-box button:hover:not(:disabled) {
+  background: #1d4ed8;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
 }
 
-button:disabled {
-  background-color: #e2e8f0 !important;
-  color: #94a3b8 !important;
+.create-team-box button:disabled,
+.add-member-box button:disabled {
+  background: #cbd5e1;
   cursor: not-allowed;
 }
 
-/* הודעות סטטוס */
+.delete-btn {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--danger);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: white;
+}
+
 .status-msg {
-  text-align: center;
-  padding: 2rem;
-  background: #dbeafe;
-  color: #1e40af;
-  border-radius: var(--radius-md);
   grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .teams-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .teams-grid {
+    grid-template-columns: 1fr;
+  }
 }
